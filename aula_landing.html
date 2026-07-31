@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MiGestion - Aula</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-main: #F8FAFC;
+    --text-dark: #0F172A;
+    --text-muted: #475569;
+    --border-light: #E2E8F0;
+    --radius-lg: 16px;
+    --radius-md: 10px;
+
+    /* PALETA DOCENTE */
+    --p-aula-main: #0EA5E9;
+    --p-aula-hover: #0284C7;
+    --p-aula-light: #F0F9FF;
+    --p-aula-accent: #38BDF8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--bg-main);
+    color: var(--text-dark);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { color: var(--text-dark); font-weight: 800; letter-spacing: -0.02em; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+
+  /* HEADER & NAVBAR */
+  header {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-light);
+  }
+  .nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 0;
+  }
+  .logo {
+    font-weight: 800; font-size: 1.3rem;
+    display: flex; align-items: center; gap: 8px;
+    color: var(--p-aula-main);
+  }
+  
+  nav.links { display: flex; gap: 24px; font-size: 0.95rem; font-weight: 600; align-items: center; }
+  nav.links a { color: var(--text-muted); transition: color .15s; }
+  nav.links a:hover { color: var(--p-aula-main); }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 12px 24px; border-radius: 999px; font-weight: 700; font-size: 0.95rem;
+    transition: transform .15s ease, box-shadow .15s ease, background-color .15s ease; cursor: pointer; border: none;
+  }
+  .btn-solid {
+    background: var(--p-aula-main);
+    color: #fff; box-shadow: 0 4px 14px rgba(14, 165, 233, 0.35);
+  }
+  .btn-solid:hover { background: var(--p-aula-hover); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(14, 165, 233, 0.45); }
+  .btn-ghost { background: #E2E8F0; color: var(--text-dark); }
+  .btn-ghost:hover { background: #CBD5E1; }
+
+  /* HERO */
+  .hero {
+    padding: 80px 0 90px;
+    display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center;
+  }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--p-aula-main); background: var(--p-aula-light); padding: 6px 14px; border-radius: 999px; margin-bottom: 20px;
+  }
+  .hero h1 { font-size: clamp(2.4rem, 4.5vw, 3.4rem); line-height: 1.15; margin-bottom: 20px; }
+  .hero h1 span { color: var(--p-aula-main); }
+  .hero p.lead { font-size: 1.12rem; color: var(--text-muted); margin-bottom: 30px; max-width: 48ch; }
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  /* MOCKUP AULA */
+  .hero-card {
+    background: #ffffff; border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg); box-shadow: 0 25px 50px -12px rgba(14, 165, 233, 0.15);
+    padding: 24px; display: flex; flex-direction: column; gap: 16px;
+  }
+  .mock-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-light); padding-bottom: 12px; }
+  .mock-title { font-weight: 700; font-size: 1rem; }
+  .badge { padding: 4px 10px; border-radius: 999px; font-size: 0.75rem; font-weight: 700; }
+  .badge-blue { background: var(--p-aula-light); color: var(--p-aula-main); }
+  
+  .student-row {
+    display: flex; align-items: center; justify-content: space-between; padding: 10px 14px;
+    background: var(--bg-main); border-radius: 8px; font-size: 0.88rem; font-weight: 600;
+  }
+  .status-present { color: #10B981; }
+  .status-grade { background: #FEF3C7; color: #D97706; padding: 2px 8px; border-radius: 6px; }
+
+  /* FEATURES */
+  section { padding: 80px 0; }
+  .sec-head { text-align: center; max-width: 640px; margin: 0 auto 56px; }
+  .sec-head .tag { font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--p-aula-main); margin-bottom: 10px; display: block; }
+  .sec-head h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); margin-bottom: 12px; }
+
+  .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .feature-card {
+    background: #ffffff; border-radius: var(--radius-lg); padding: 32px 24px;
+    border: 1px solid var(--border-light); transition: all .2s ease;
+  }
+  .feature-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06); border-color: var(--p-aula-accent); }
+  .feature-icon {
+    width: 48px; height: 48px; border-radius: 12px; background: var(--p-aula-light);
+    color: var(--p-aula-main); display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; margin-bottom: 20px;
+  }
+  .feature-card h3 { font-size: 1.2rem; margin-bottom: 10px; }
+  .feature-card p { font-size: 0.9rem; color: var(--text-muted); }
+
+  /* BENEFICIOS DOCENTES */
+  .roles-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+  .role-box {
+    background: #ffffff; padding: 36px; border-radius: var(--radius-lg);
+    border-left: 6px solid var(--p-aula-main); box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+  }
+  .role-box h3 { font-size: 1.3rem; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+  .role-list { list-style: none; }
+  .role-list li { padding: 8px 0; font-size: 0.95rem; color: var(--text-muted); display: flex; align-items: center; gap: 10px; }
+  .role-list li::before { content: "✓"; color: var(--p-aula-main); font-weight: 800; }
+
+  /* CTA SECTION */
+  .cta-banner {
+    background: linear-gradient(135deg, #0EA5E9, #0284C7);
+    color: #ffffff; border-radius: 24px; padding: 60px 40px;
+    text-align: center; max-width: 900px; margin: 0 auto;
+  }
+  .cta-banner h2 { color: #ffffff; font-size: clamp(2rem, 3.5vw, 2.6rem); margin-bottom: 16px; }
+  .cta-banner p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 32px; }
+
+  /* FOOTER */
+  footer {
+    padding: 40px 0; border-top: 1px solid var(--border-light); margin-top: 60px;
+    display: flex; justify-content: space-between; color: var(--text-muted); font-size: 0.88rem; flex-wrap: wrap; gap: 12px;
+  }
+
+  /* MODAL REGISTRO */
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px);
+    display: none; align-items: center; justify-content: center; z-index: 100; padding: 20px;
+  }
+  .modal-overlay.active { display: flex; }
+  .modal-card {
+    background: #ffffff; border-radius: 20px; width: 100%; max-width: 480px;
+    padding: 36px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); position: relative;
+  }
+  .modal-close {
+    position: absolute; top: 20px; right: 20px; background: none; border: none;
+    font-size: 1.4rem; cursor: pointer; color: var(--text-muted);
+  }
+  .form-group { margin-bottom: 18px; }
+  .form-group label { display: block; font-weight: 700; font-size: 0.88rem; margin-bottom: 8px; }
+  .form-control {
+    width: 100%; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border-light);
+    font-family: inherit; font-size: 0.95rem; outline: none;
+  }
+  .form-control:focus { border-color: var(--p-aula-main); }
+
+  @media (max-width: 992px) {
+    .hero { grid-template-columns: 1fr; }
+    .features-grid { grid-template-columns: repeat(2, 1fr); }
+    .roles-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .features-grid { grid-template-columns: 1fr; }
+    nav.links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="index.html" class="logo">
+      <span>MiGestion | Aula</span>
+    </a>
+    <nav class="links">
+      <a href="#herramientas">Herramientas</a>
+      <a href="#ventajas">Ventajas</a>
+      <a href="#registro">Crear Cuenta</a>
+    </nav>
+    <button onclick="openRegisterModal()" class="btn btn-solid">Registrarse</button>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero wrap">
+    <div>
+      <span class="eyebrow">Tu Cuaderno de Aula Digital</span>
+      <h1>La herramienta personal para organizar tus <span>clases y cursos</span>.</h1>
+      <p class="lead">Simplifica tu día a día docente: toma asistencia en segundos, registra notas, planifica clases y mantén el control de todos tus cursos en una sola pantalla.</p>
+      <div class="hero-ctas">
+        <button onclick="openRegisterModal()" class="btn btn-solid">Comenzar Gratis</button>
+        <a href="#herramientas" class="btn btn-ghost">Ver Funcionalidades</a>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <div class="mock-header">
+        <span class="mock-title">Matemáticas — 5° Año A</span>
+        <span class="badge badge-blue">Mi Planilla</span>
+      </div>
+      <div class="student-row">
+        <span>García, Lucía</span>
+        <span class="status-present">✓ Presente</span>
+      </div>
+      <div class="student-row">
+        <span>Martínez, Mateo</span>
+        <span class="status-present">✓ Presente</span>
+      </div>
+      <div class="student-row">
+        <span>Sosa, Valentina</span>
+        <span class="status-grade">Parcial: 9 / 10</span>
+      </div>
+      <div class="student-row">
+        <span>Torres, Joaquín</span>
+        <span class="status-present">✓ Presente</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FUNCIONALIDADES PARA DOCENTES -->
+  <section id="herramientas" style="background: #F1F5F9;">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="tag">Diseñado para el Docente</span>
+        <h2>Todo lo que necesitas en tu día a día</h2>
+        <p>Herramientas pensadas para reducir tu trabajo fuera del aula y eliminar las planillas en papel.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📋</div>
+          <h3>Asistencia Rápida</h3>
+          <p>Toma asistencia con un par de toques desde el celular al iniciar la clase y lleva el cómputo total sin esfuerzo.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Calificaciones y Promedios</h3>
+          <p>Registra parciales, trabajos prácticos y deja que el sistema calcule los promedios automáticamente.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📓</div>
+          <h3>Bitácora de Clases</h3>
+          <p>Lleva tu registro diario de temas dados, observaciones individuales de alumnos y tareas pendientes.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📅</div>
+          <h3>Agenda de Exámenes</h3>
+          <p>Organiza la fecha de tus evaluaciones, entregas de trabajos y cierres de trimestre por cada curso.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🗂️</div>
+          <h3>Planificador de Contenidos</h3>
+          <p>Estructura tus unidades didácticas, temas de clase y recursos en un solo lugar accesible.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📱</div>
+          <h3>Acceso desde el Celular</h3>
+          <p>Funciona de manera fluida en smartphones, tablets o notebook sin importar donde estés.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VENTAJAS DE USO PERSONAL -->
+  <section id="ventajas" class="wrap">
+    <div class="sec-head">
+      <span class="tag">Tu Aliado de Trabajo</span>
+      <h2>Ahorra horas de trabajo administrativo</h2>
+    </div>
+
+    <div class="roles-grid">
+      <div class="role-box">
+        <h3>🚀 Eficiencia en el Aula</h3>
+        <ul class="role-list">
+          <li>Carga notas y asistencia en segundos durante la clase.</li>
+          <li>Sin más cálculos manuales para cerrar notas o boletines.</li>
+          <li>Acceso rápido al historial de cualquier alumno cuando lo necesites.</li>
+          <li>Organiza múltiples colegios, escuelas o institutos en una sola cuenta.</li>
+        </ul>
+      </div>
+
+      <div class="role-box">
+        <h3>💡 Privado e Independiente</h3>
+        <ul class="role-list">
+          <li>Tu información docente es tuya: 100% privada y segura.</li>
+          <li>Exporta tus planillas a Excel o PDF en un clic cuando debas entregarlas.</li>
+          <li>Sin configuraciones complejas ni necesidad de soporte técnico.</li>
+          <li>Listo para usar en menos de 2 minutos.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- BANNER CTA -->
+  <section id="registro" class="wrap">
+    <div class="cta-banner">
+      <h2>Empieza a organizar tus clases hoy</h2>
+      <p>Prueba gratis la plataforma de gestión personal diseñada por y para docentes.</p>
+      <button onclick="openRegisterModal()" class="btn btn-ghost" style="background: #ffffff; color: var(--p-aula-main);">Registrarse</button>
+    </div>
+  </section>
+</main>
+
+<!-- MODAL REGISTRO DOCENTE -->
+<div id="registerModal" class="modal-overlay">
+  <div class="modal-card">
+    <button onclick="closeRegisterModal()" class="modal-close">✕</button>
+    <h3 style="font-size:1.4rem; margin-bottom:6px;">Crear Cuenta Docente</h3>
+    <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:20px;">Comienza a organizar tus cursos gratis.</p>
+
+    <form onsubmit="handleRegisterSubmit(event)">
+      <div class="form-group">
+        <label for="docenteName">Nombre Completo</label>
+        <input type="text" id="docenteName" class="form-control" placeholder="Ej. Prof. María González" required>
+      </div>
+
+      <div class="form-group">
+        <label for="docenteEmail">Correo Electrónico</label>
+        <input type="email" id="docenteEmail" class="form-control" placeholder="tu.email@ejemplo.com" required>
+      </div>
+
+      <div class="form-group">
+        <label for="docenteMateria">Materia o Área Principal</label>
+        <input type="text" id="docenteMateria" class="form-control" placeholder="Ej. Matemáticas, Historia, Primaria..." required>
+      </div>
+
+      <button type="submit" class="btn btn-solid" style="width: 100%; margin-top: 8px;">Registrarse</button>
+    </form>
+  </div>
+</div>
+
+<footer class="wrap">
+  <span>© 2026 MiGestión — Módulo de Gestión de Aulas — Plataformas de Software Integrales - www.migestion.com.ar</span>
+  <a href="index.html" style="color:var(--p-main); font-weight:700;">Volver a MiGestión</a>
+</footer>
+
+<script>
+  function openRegisterModal() {
+    document.getElementById('registerModal').classList.add('active');
+  }
+
+  function closeRegisterModal() {
+    document.getElementById('registerModal').classList.remove('active');
+  }
+
+  function handleRegisterSubmit(e) {
+    e.preventDefault();
+    closeRegisterModal();
+    alert('¡Bienvenido/a! Te enviamos las instrucciones a tu correo para comenzar a configurar tus cursos.');
+  }
+</script>
+
+</body>
+</html>

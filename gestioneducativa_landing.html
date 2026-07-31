@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="es-AR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>
+            MiGestion - Escuela
+        </title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            :root {
+                --bg-main: #f8fafc;
+                --text-dark: #0f172a;
+                --text-muted: #475569;
+                --border-light: #e2e8f0;
+                --radius-lg: 16px;
+                --p-main: #2563eb;
+                --p-hover: #1d4ed8;
+                --p-light: #eff6ff;
+            }
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+            body {
+                background: var(--bg-main);
+                color: var(--text-dark);
+                font-family: "Plus Jakarta Sans", sans-serif;
+                line-height: 1.6;
+            }
+            .wrap {
+                max-width: 1140px;
+                margin: 0 auto;
+                padding: 0 24px;
+            }
+            header {
+                position: sticky;
+                top: 0;
+                z-index: 50;
+                background: rgba(255, 255, 255, 0.9);
+                backdrop-filter: blur(12px);
+                border-bottom: 1px solid var(--border-light);
+            }
+            .nav {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 16px 0;
+            }
+            .logo {
+                font-weight: 800;
+                font-size: 1.3rem;
+                color: var(--p-main);
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+            .btn {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                padding: 12px 24px;
+                border-radius: 999px;
+                font-weight: 700;
+                font-size: 0.95rem;
+                cursor: pointer;
+                border: none;
+                text-decoration: none;
+            }
+            .btn-solid {
+                background: var(--p-main);
+                color: #fff;
+                box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+            }
+            .btn-solid:hover {
+                background: var(--p-hover);
+            }
+            .btn-ghost {
+                background: #e2e8f0;
+                color: var(--text-dark);
+            }
+            .hero {
+                padding: 80px 0;
+                display: grid;
+                grid-template-columns: 1.1fr 0.9fr;
+                gap: 48px;
+                align-items: center;
+            }
+            .eyebrow {
+                display: inline-block;
+                font-size: 0.82rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                color: var(--p-main);
+                background: var(--p-light);
+                padding: 6px 14px;
+                border-radius: 999px;
+                margin-bottom: 20px;
+            }
+            .hero h1 {
+                font-size: clamp(2.3rem, 4vw, 3.2rem);
+                line-height: 1.15;
+                margin-bottom: 20px;
+                font-weight: 800;
+            }
+            .hero h1 span {
+                color: var(--p-main);
+            }
+            .hero p {
+                font-size: 1.1rem;
+                color: var(--text-muted);
+                margin-bottom: 30px;
+            }
+            .card-mock {
+                background: #fff;
+                border: 1px solid var(--border-light);
+                border-radius: var(--radius-lg);
+                padding: 24px;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+            }
+            .sec-head {
+                text-align: center;
+                max-width: 680px;
+                margin: 0 auto 56px;
+            }
+            .sec-head h2 {
+                font-size: 2.2rem;
+                margin-bottom: 12px;
+                font-weight: 800;
+            }
+            .features-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 24px;
+            }
+            .f-card {
+                background: #fff;
+                border-radius: var(--radius-lg);
+                padding: 28px;
+                border: 1px solid var(--border-light);
+            }
+            .f-icon {
+                width: 44px;
+                height: 44px;
+                border-radius: 10px;
+                background: var(--p-light);
+                color: var(--p-main);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.3rem;
+                margin-bottom: 16px;
+                font-weight: 800;
+            }
+            .f-card h3 {
+                font-size: 1.15rem;
+                margin-bottom: 8px;
+                font-weight: 700;
+            }
+            .f-card p {
+                font-size: 0.9rem;
+                color: var(--text-muted);
+            }
+            .cta-banner {
+                background: var(--p-main);
+                color: #fff;
+                border-radius: 24px;
+                padding: 60px 40px;
+                text-align: center;
+                margin: 80px 0;
+            }
+            .cta-banner h2 {
+                color: #fff;
+                font-size: 2.2rem;
+                margin-bottom: 16px;
+            }
+            footer {
+                border-top: 1px solid var(--border-light);
+                padding: 30px 0;
+                text-align: center;
+                color: var(--text-muted);
+                font-size: 0.9rem;
+            }
+            @media (max-width: 900px) {
+                .hero {
+                    grid-template-columns: 1fr;
+                }
+                .features-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="wrap nav">
+                <a href="index.html" class="logo">MiGestion | Escuela</a>
+                <button
+                    onclick="alert('Solicitud recibida.')"
+                    class="btn btn-solid"
+                >
+                    Registrarse
+                </button>
+            </div>
+        </header>
+        <main class="wrap">
+            <section class="hero">
+                <div>
+                    <span class="eyebrow"
+                        >🏛️ Gestión Escolar Institucional</span
+                    >
+                    <h1>
+                        Administración académica y
+                        <span>facturación de cuotas</span>.
+                    </h1>
+                    <p>
+                        Cobranza de matrículas y cuotas, actas de examen,
+                        boletines, analíticos y comunicación institucional
+                        centralizada.
+                    </p>
+                    <div style="display: flex; gap: 12px">
+                        <button
+                            onclick="alert('Agendando demostración.')"
+                            class="btn btn-solid"
+                        >
+                            Solicitar Demo Institucional
+                        </button>
+                    </div>
+                </div>
+                <div class="card-mock">
+                    <h3>💳 Cobranza de Cuotas</h3>
+                    <hr
+                        style="
+                            margin: 12px 0;
+                            border: 0;
+                            border-top: 1px solid #e2e8f0;
+                        "
+                    />
+                    <p><strong>Emisión Mensual:</strong> 450 Alumnos</p>
+                    <p>
+                        <strong>Recaudación Cuota Agosto:</strong> 82% Cobrado
+                    </p>
+                    <p>
+                        <strong>Facturación AFIP:</strong> Automatizada masiva
+                    </p>
+                    <p
+                        style="
+                            color: #2563eb;
+                            font-weight: 700;
+                            margin-top: 12px;
+                        "
+                    >
+                        ✓ Débitos automáticos procesados
+                    </p>
+                </div>
+            </section>
+
+            <section>
+                <div class="sec-head">
+                    <h2>Módulos del Sistema Administrativo Educativo</h2>
+                    <p>
+                        Centraliza la gestión económica, legajos de alumnos y la
+                        relación con los organismos educativos.
+                    </p>
+                </div>
+                <div class="features-grid">
+                    <div class="f-card">
+                        <div class="f-icon">💵</div>
+                        <h3>Facturación y Cobro de Cuotas</h3>
+                        <p>
+                            Generación masiva de cuotas, envío de cupones de
+                            pago, débitos automáticos y facturación electrónica
+                            automática.
+                        </p>
+                    </div>
+                    <div class="f-card">
+                        <div class="f-icon">📝</div>
+                        <h3>Inscripciones y Matrículas</h3>
+                        <p>
+                            Gestión del proceso de admisión, reserva de
+                            vacantes, legajo administrativo del estudiante y
+                            tutor responsable.
+                        </p>
+                    </div>
+                    <div class="f-card">
+                        <div class="f-icon">📜</div>
+                        <h3>Boletines y Libros Matriz</h3>
+                        <p>
+                            Emisión oficial de boletines de calificaciones,
+                            actas de exámenes regulares/libres y libro matriz
+                            institucional.
+                        </p>
+                    </div>
+                    <div class="f-card">
+                        <div class="f-icon">👨‍🏫</div>
+                        <h3>Plantel Docente y Presentismo</h3>
+                        <p>
+                            Control de asistencia de profesores, asignación de
+                            horas cátedra, suplencias e historial docente.
+                        </p>
+                    </div>
+                    <div class="f-card">
+                        <div class="f-icon">🔔</div>
+                        <h3>Comunicados Institucionales</h3>
+                        <p>
+                            Módulo de mensajería masiva oficial para enviar
+                            notas de administración y convocatorias generales.
+                        </p>
+                    </div>
+                    <div class="f-card">
+                        <div class="f-icon">📊</div>
+                        <h3>Reportes de Morosidad</h3>
+                        <p>
+                            Tableros financieros con control de deuda por
+                            alumno, planes de pago especiales y proyección de
+                            ingresos.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="cta-banner">
+                <h2>
+                    Lleva la administración de tu colegio al siguiente nivel
+                </h2>
+                <p style="margin-bottom: 24px">
+                    Optimiza la cobranza y simplifica el trabajo de la
+                    secretaría escolar.
+                </p>
+                <button
+                    onclick="alert('Demostración agendada.')"
+                    class="btn btn-ghost"
+                    style="background: #fff; color: var(--p-main)"
+                >
+                    Registrarse
+                </button>
+            </section>
+        </main>
+<footer class="wrap">
+  <span>© 2026 MiGestión — Módulo de Gestión de Institucion Educativa — Plataformas de Software Integrales - www.migestion.com.ar</span>
+  <a href="index.html" style="color:var(--p-main); font-weight:700;">Volver a MiGestión</a>
+</footer>
+    </body>
+</html>

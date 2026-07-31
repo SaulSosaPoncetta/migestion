@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MiGestión — Soluciones Integrales de Software</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-main: #F8FAFC;
+    --text-dark: #0F172A;
+    --text-muted: #475569;
+    --border-light: #E2E8F0;
+    --radius-lg: 16px;
+    --radius-md: 10px;
+
+    /* PALETA POR PRODUCTO */
+    --p-comercial-main: #10B981;
+    --p-comercial-light: #ECFDF5;
+    --p-stock-main: #F97316;
+    --p-stock-light: #FFF7ED;
+    --p-creditos-main: #8B5CF6;
+    --p-creditos-light: #F5F3FF;
+    --p-profesionales-main: #9F1239;
+    --p-profesionales-light: #FFF1F2;
+    --p-aula-main: #0EA5E9;
+    --p-aula-light: #F0F9FF;
+    --p-biblioteca-main: #06B6D4;
+    --p-biblioteca-light: #ECFEFF;
+    --p-educativa-main: #2563EB;
+    --p-educativa-light: #EFF6FF;
+    --p-personal-main: #78350F;
+    --p-personal-light: #FEF3C7;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--bg-main);
+    color: var(--text-dark);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { color: var(--text-dark); font-weight: 800; letter-spacing: -0.02em; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+
+  /* HEADER & NAVBAR */
+  header {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-light);
+  }
+  .nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 0;
+  }
+  .logo {
+    font-weight: 800; font-size: 1.4rem;
+    display: flex; align-items: center; gap: 8px;
+    background: linear-gradient(135deg, #2563EB, #8B5CF6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  nav.links { display: flex; gap: 24px; font-size: 0.95rem; font-weight: 600; align-items: center; }
+  nav.links a { color: var(--text-muted); transition: color .15s; }
+  nav.links a:hover { color: var(--p-educativa-main); }
+
+  /* Menu Dropdown */
+  .dropdown { position: relative; }
+  .dropdown-btn {
+    background: none; border: none; font-family: inherit; font-size: 0.95rem; font-weight: 600;
+    color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 6px; padding: 6px 0;
+  }
+  .dropdown-btn:hover { color: var(--p-educativa-main); }
+  .dropdown-menu {
+    display: none; position: absolute; top: 100%; left: 0;
+    background: #ffffff; min-width: 320px;
+    box-shadow: 0 20px 30px -10px rgba(15, 23, 42, 0.15);
+    border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 10px; margin-top: 8px;
+  }
+  .dropdown:hover .dropdown-menu,
+  .dropdown.open .dropdown-menu { display: block; }
+  
+  .dropdown-item {
+    display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 8px;
+    transition: background 0.15s ease;
+  }
+  .dropdown-item:hover { background: var(--bg-main); }
+  .dropdown-item .badge-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 12px 24px; border-radius: 999px; font-weight: 700; font-size: 0.95rem;
+    transition: transform .15s ease, box-shadow .15s ease; cursor: pointer; border: none;
+  }
+  .btn-solid {
+    background: linear-gradient(135deg, #2563EB, #8B5CF6);
+    color: #fff; box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+  }
+  .btn-solid:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45); }
+  .btn-ghost { background: #E2E8F0; color: var(--text-dark); }
+  .btn-ghost:hover { background: #CBD5E1; }
+
+  /* HERO */
+  .hero {
+    padding: 80px 0 90px;
+    display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center;
+  }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+    color: #2563EB; background: #EFF6FF; padding: 6px 14px; border-radius: 999px; margin-bottom: 20px;
+  }
+  .hero h1 { font-size: clamp(2.4rem, 4.5vw, 3.5rem); line-height: 1.15; margin-bottom: 20px; }
+  .hero h1 span {
+    background: linear-gradient(135deg, #2563EB, #8B5CF6);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero p.lead { font-size: 1.12rem; color: var(--text-muted); margin-bottom: 30px; max-width: 48ch; }
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  .stage { position: relative; height: 380px; }
+  .folder {
+    position: absolute; inset: 0; background: #fff; border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg); box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.12);
+    padding: 24px; display: flex; flex-direction: column; gap: 12px;
+  }
+  .ficha {
+    display: flex; align-items: center; justify-content: space-between; padding: 12px 16px;
+    border-radius: 12px; font-weight: 700; font-size: 0.9rem; transition: transform 0.15s ease;
+  }
+  .ficha:hover { transform: translateX(4px); }
+
+  /* SECTION HEADINGS */
+  section { padding: 80px 0; }
+  .sec-head { max-width: 600px; margin-bottom: 48px; }
+  .sec-head .tag { font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: #8B5CF6; margin-bottom: 10px; display: block; }
+  .sec-head h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); margin-bottom: 12px; }
+
+  /* PRODUCTOS ESTRELLA */
+  .products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .product-star-card {
+    background: #ffffff; border-radius: var(--radius-lg); padding: 26px 22px;
+    border: 2px solid transparent; transition: all .2s ease;
+    display: flex; flex-direction: column; position: relative; overflow: hidden;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+  }
+  .product-star-card:hover { transform: translateY(-5px); }
+
+  .product-star-card .ico-box {
+    width: 48px; height: 48px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; margin-bottom: 16px;
+  }
+  .product-star-card h4 { font-size: 1.15rem; margin-bottom: 8px; }
+  .product-star-card p { font-size: 0.88rem; color: var(--text-muted); }
+
+  /* COLORES DE PRODUCTO */
+  .card-comercial { border-color: rgba(16, 185, 129, 0.2); }
+  .card-comercial .ico-box { background: var(--p-comercial-light); color: var(--p-comercial-main); }
+  .card-comercial:hover { border-color: var(--p-comercial-main); box-shadow: 0 12px 30px rgba(16, 185, 129, 0.15); }
+
+  .card-stock { border-color: rgba(249, 115, 22, 0.2); }
+  .card-stock .ico-box { background: var(--p-stock-light); color: var(--p-stock-main); }
+  .card-stock:hover { border-color: var(--p-stock-main); box-shadow: 0 12px 30px rgba(249, 115, 22, 0.15); }
+
+  .card-creditos { border-color: rgba(139, 92, 246, 0.2); }
+  .card-creditos .ico-box { background: var(--p-creditos-light); color: var(--p-creditos-main); }
+  .card-creditos:hover { border-color: var(--p-creditos-main); box-shadow: 0 12px 30px rgba(139, 92, 246, 0.15); }
+
+  .card-profesionales { border-color: rgba(159, 18, 57, 0.2); }
+  .card-profesionales .ico-box { background: var(--p-profesionales-light); color: var(--p-profesionales-main); }
+  .card-profesionales:hover { border-color: var(--p-profesionales-main); box-shadow: 0 12px 30px rgba(159, 18, 57, 0.15); }
+
+  .card-aula { border-color: rgba(14, 165, 233, 0.2); }
+  .card-aula .ico-box { background: var(--p-aula-light); color: var(--p-aula-main); }
+  .card-aula:hover { border-color: var(--p-aula-main); box-shadow: 0 12px 30px rgba(14, 165, 233, 0.15); }
+
+  .card-biblioteca { border-color: rgba(6, 182, 212, 0.2); }
+  .card-biblioteca .ico-box { background: var(--p-biblioteca-light); color: var(--p-biblioteca-main); }
+  .card-biblioteca:hover { border-color: var(--p-biblioteca-main); box-shadow: 0 12px 30px rgba(6, 182, 212, 0.15); }
+
+  .card-educativa { border-color: rgba(37, 99, 235, 0.2); }
+  .card-educativa .ico-box { background: var(--p-educativa-light); color: var(--p-educativa-main); }
+  .card-educativa:hover { border-color: var(--p-educativa-main); box-shadow: 0 12px 30px rgba(37, 99, 235, 0.15); }
+
+  .card-personal { border-color: rgba(120, 53, 15, 0.2); }
+  .card-personal .ico-box { background: var(--p-personal-light); color: var(--p-personal-main); }
+  .card-personal:hover { border-color: var(--p-personal-main); box-shadow: 0 12px 30px rgba(120, 53, 15, 0.15); }
+
+  /* TIPOS DE SERVICIO */
+  .services-types-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .service-type-card {
+    background: #ffffff; border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 32px 28px;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03); display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .feature-list { list-style: none; margin: 16px 0 24px; font-size: 0.9rem; }
+  .feature-list li { padding: 6px 0 6px 22px; position: relative; color: var(--text-muted); }
+  .feature-list li::before { content: "✓"; position: absolute; left: 0; color: #10B981; font-weight: 800; }
+
+  /* CTA & FOOTER */
+  .cta-section {
+    background: linear-gradient(135deg, #0F172A, #1E293B);
+    color: #ffffff; border-radius: 24px; padding: 60px;
+    display: flex; justify-content: space-between; align-items: center; gap: 40px; flex-wrap: wrap;
+  }
+  .cta-section h2 { color: #fff; font-size: clamp(1.8rem, 3vw, 2.2rem); }
+  .cta-section p { color: #94A3B8; }
+
+  footer {
+    padding: 40px 0; border-top: 1px solid var(--border-light);
+    display: flex; justify-content: space-between; color: var(--text-muted); font-size: 0.88rem; flex-wrap: wrap; gap: 12px;
+  }
+
+  /* MODAL REGISTRO */
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px);
+    display: none; align-items: center; justify-content: center; z-index: 100; padding: 20px;
+  }
+  .modal-overlay.active { display: flex; }
+  .modal-card {
+    background: #ffffff; border-radius: 20px; width: 100%; max-width: 520px;
+    padding: 36px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); position: relative;
+  }
+  .modal-close {
+    position: absolute; top: 20px; right: 20px; background: none; border: none;
+    font-size: 1.4rem; cursor: pointer; color: var(--text-muted);
+  }
+  .form-group { margin-bottom: 20px; }
+  .form-group label { display: block; font-weight: 700; font-size: 0.88rem; margin-bottom: 8px; }
+  .form-control {
+    width: 100%; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border-light);
+    font-family: inherit; font-size: 0.95rem; outline: none; transition: border-color .15s;
+  }
+  .form-control:focus { border-color: #2563EB; }
+
+  @media (max-width: 1100px) {
+    .products-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 992px) {
+    .services-types-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; }
+    .stage { display: none; }
+    .products-grid, .services-types-grid { grid-template-columns: 1fr; }
+    nav.links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#" class="logo">MiGestión</a>
+    <nav class="links">
+      <div class="dropdown" id="productsDropdown">
+        <button class="dropdown-btn" onclick="toggleDropdown(event)">
+          Módulos y Productos <span style="font-size: 0.7rem;">▼</span>
+        </button>
+        <div class="dropdown-menu">
+          <a href="comercial_landing.html" class="dropdown-item">
+            <span class="badge-dot" style="background: var(--p-comercial-main);"></span>
+            <span>Gestión Comercial y Cobranzas</span>
+          </a>
+          <a href="stock_landing.html" class="dropdown-item">
+            <span class="badge-dot" style="background: var(--p-stock-main);"></span>
+            <span>Stock y Almacenes</span>
+          </a>
+          <a href="creditos_landing.html" class="dropdown-item">
+            <span class="badge-dot" style="background: var(--p-creditos-main);"></span>
+            <span>Gestión de Créditos Personales</span>
+          </a>
+          <a href="profesionales_landing.html" class="dropdown-item">
+            <span class="badge-dot" style="background: var(--p-profesionales-main);"></span>
+            <span>Gestión para Profesionales</span>
+          </a>
+          <a href="aula_landing.html" class="dropdown-item">
+            <span class="badge-dot" style="background: var(--p-aula-main);"></span>
+            <span>Gestión de Aula</span>
+          </a>
+          <a href="biblioteca_landing.html" class="dropdown-item">
+            <span class="badge-dot" style="background: var(--p-biblioteca-main);"></span>
+            <span>Gestión de Biblioteca</span>
+          </a>
+          <a href="gestioneducativa_landing.html" class="dropdown-item">
+            <span class="badge-dot" style="background: var(--p-educativa-main);"></span>
+            <span>Gestión Educativa Institucional</span>
+          </a>
+          <a href="personal_landing.html" class="dropdown-item">
+            <span class="badge-dot" style="background: var(--p-personal-main);"></span>
+            <span>Personal y Sueldos</span>
+          </a>
+        </div>
+      </div>
+      
+      <a href="#servicios">Servicios</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <button onclick="openRegisterModal()" class="btn btn-solid">Registrarse</button>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero wrap">
+    <div>
+      <span class="eyebrow">⚡ Registro Unificado de Usuarios</span>
+      <h1>Tu gestión operativa <span>organizada y al instante</span>.</h1>
+      <p class="lead">Crea tu cuenta de usuario e ingresa directamente a las aplicaciones SaaS o solicita el desarrollo personalizado para tu organización.</p>
+      <div class="hero-ctas">
+        <button onclick="openRegisterModal()" class="btn btn-solid">Crear Mi Cuenta</button>
+        <a href="#productos-estrella" class="btn btn-ghost">Ver soluciones</a>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="folder">
+        <a href="creditos_landing.html" class="ficha" style="background: var(--p-creditos-light); color: var(--p-creditos-main);">
+          <span>💳 Créditos Personales</span><span>Activo</span>
+        </a>
+        <a href="comercial_landing.html" class="ficha" style="background: var(--p-comercial-light); color: var(--p-comercial-main);">
+          <span>🛒 Comercial & Ventas</span><span>Sincronizado</span>
+        </a>
+        <a href="aula_landing.html" class="ficha" style="background: var(--p-aula-light); color: var(--p-aula-main);">
+          <span>👩‍🏫 Aula Virtual & Asistencia</span><span>En línea</span>
+        </a>
+        <a href="biblioteca_landing.html" class="ficha" style="background: var(--p-biblioteca-light); color: var(--p-biblioteca-main);">
+          <span>📚 Catálogo Biblioteca</span><span>Disponible</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTOS ESTRELLA -->
+  <section id="productos-estrella" style="background: #F1F5F9;">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="tag">Ecosistema Integrado</span>
+        <h2>Nuestros Productos Estrella</h2>
+        <p>Selecciona cualquiera de nuestros productos para acceder a su Landing Page y servicio inmediato.</p>
+      </div>
+
+      <div class="products-grid">
+        <a href="comercial_landing.html" class="product-star-card card-comercial">
+          <div class="ico-box">🛒</div>
+          <h4>Gestión Comercial</h4>
+          <p>Control total de ventas, facturación electrónica, cajas, facturas recurrentes y cobranzas integradas.</p>
+        </a>
+
+        <a href="stock_landing.html" class="product-star-card card-stock">
+          <div class="ico-box">📦</div>
+          <h4>Stock y Almacenes</h4>
+          <p>Inventarios multi-sucursal, alertas de faltantes, control de entradas/salidas y trazabilidad de productos.</p>
+        </a>
+
+        <a href="creditos_landing.html" class="product-star-card card-creditos">
+          <div class="ico-box">💳</div>
+          <h4>Créditos Personales</h4>
+          <p>Simulación y préstamos en cuotas, cálculo de mora, seguimiento de cobranzas y refinanciaciones.</p>
+        </a>
+
+        <a href="aula_landing.html" class="product-star-card card-aula">
+          <div class="ico-box">👩‍🏫</div>
+          <h4>Gestión de Aula</h4>
+          <p>Control de asistencias, registro de calificaciones, clases online y plataforma interactiva para docentes y alumnos.</p>
+        </a>
+
+        <a href="biblioteca_landing.html" class="product-star-card card-biblioteca">
+          <div class="ico-box">📚</div>
+          <h4>Gestión de Biblioteca</h4>
+          <p>Catalogación de libros, control de préstamos, devolución con código de barras y repositorio digital de contenidos.</p>
+        </a>
+
+        <a href="gestioneducativa_landing.html" class="product-star-card card-educativa">
+          <div class="ico-box">🏛️</div>
+          <h4>Gestión Educativa</h4>
+          <p>Matriculación, legajos de alumnos, cobro de cuotas mensuales, planes de pago y reportes directivos.</p>
+        </a>
+
+        <a href="personal_landing.html" class="product-star-card card-personal">
+          <div class="ico-box">👥</div>
+          <h4>Personal y Sueldos</h4>
+          <p>Gestión de RRHH, legajos de empleados, asistencias, cálculo de haberes y conceptos salariales.</p>
+        </a>
+
+        <a href="personal_landing.html" class="product-star-card card-profesionales">
+          <div class="ico-box">🩺</div>
+          <h4>Gestión de Profesionales</h4>
+          <p>Turnos online, agendas médicas/profesionales, fichas de seguimiento de clientes e historias clínicas.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIPOS DE SERVICIO -->
+  <section id="servicios" class="wrap">
+    <div class="sec-head">
+      <span class="tag">Modalidades</span>
+      <h2>Elige el tipo de servicio ideal</h2>
+    </div>
+
+    <div class="services-types-grid">
+      <div class="service-type-card">
+        <div>
+          <h3>Software Web a Medida</h3>
+          <p style="font-size:0.9rem; color:var(--text-muted);">Acceso remoto desde navegador o dispositivos móviles.</p>
+          <ul class="feature-list">
+            <li>Multi-usuario 24/7 sin instalaciones</li>
+            <li style="font-weight:700; color:var(--p-creditos-main);">Incluye Apps Mobile de consulta rápida</li>
+            <li>Integración con pasarelas de pago y APIs</li>
+          </ul>
+        </div>
+        <button onclick="openRegisterModal('web')" class="btn btn-ghost">Solicitar Proyecto Web</button>
+      </div>
+
+      <div class="service-type-card">
+        <div>
+          <h3>Software de Escritorio</h3>
+          <p style="font-size:0.9rem; color:var(--text-muted);">Rendimiento local de alta velocidad sin dependencia de red.</p>
+          <ul class="feature-list">
+            <li>Operatividad offline garantizada</li>
+            <li>Conexión con hardware (impresoras/lectoras)</li>
+            <li>Sincronización opcional a la nube</li>
+          </ul>
+        </div>
+        <button onclick="openRegisterModal('escritorio')" class="btn btn-ghost">Solicitar Software Local</button>
+      </div>
+
+      <div class="service-type-card">
+        <div>
+          <h3>Software como Servicio (SaaS)</h3>
+          <p style="font-size:0.9rem; color:var(--text-muted);">Acceso inmediato mediante suscripción a nuestros productos.</p>
+          <ul class="feature-list">
+            <li>Creación de cuenta en menos de 24 horas</li>
+            <li>Soporte técnico y mantenimiento incluido</li>
+            <li>Selección dinámica de producto</li>
+          </ul>
+        </div>
+        <button onclick="openRegisterModal('saas')" class="btn btn-solid">Registrarse a SaaS</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA CONTACTO -->
+  <section id="contacto" class="wrap">
+    <div class="cta-section">
+      <div>
+        <h2>¿Listo para digitalizar tu negocio?</h2>
+        <p>Crea tu cuenta de usuario o consúltanos ante cualquier duda técnica.</p>
+      </div>
+      <button onclick="openRegisterModal()" class="btn btn-solid" style="background:#fff; color:var(--text-dark);">Registrar Mi Empresa</button>
+    </div>
+  </section>
+</main>
+
+<!-- MODAL: REGISTRO DE USUARIO -->
+<div id="registerModal" class="modal-overlay">
+  <div class="modal-card">
+    <button onclick="closeRegisterModal()" class="modal-close">✕</button>
+    <h3 style="font-size:1.5rem; margin-bottom:8px;">Registro de Usuario</h3>
+    <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:24px;">Selecciona el tipo de servicio que necesitas para continuar.</p>
+
+    <form id="registerForm" onsubmit="handleRegisterSubmit(event)">
+      <div class="form-group">
+        <label for="serviceType">Tipo de Servicio</label>
+        <select id="serviceType" class="form-control" onchange="updateFormFields()" required>
+          <option value="">-- Selecciona una opción --</option>
+          <option value="web">Software Web a Medida</option>
+          <option value="escritorio">Software de Escritorio a Medida</option>
+          <option value="saas">Software como Servicio (SaaS - Suscripción)</option>
+        </select>
+      </div>
+
+      <div id="saasProductGroup" class="form-group" style="display: none;">
+        <label for="saasProduct">Selecciona el Producto SaaS</label>
+        <select id="saasProduct" class="form-control">
+          <option value="comercial_landing.html">🛒 Gestión Comercial y Cobranzas</option>
+          <option value="stock_landing.html">📦 Stock y Almacenes</option>
+          <option value="creditos_landing.html">💳 Gestión de Créditos Personales</option>
+          <option value="personal_landing.html">🩺 Gestión de Profesionales</option>
+          <option value="aula_landing.html">👩‍🏫 Gestión de Aula</option>
+          <option value="biblioteca_landing.html">📚 Gestión de Biblioteca</option>
+          <option value="gestioneducativa_landing.html">🏛️ Gestión Educativa Institucional</option>
+          <option value="personal_landing.html">👥 Personal y Sueldos</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="userName">Nombre y Apellido / Empresa</label>
+        <input type="text" id="userName" class="form-control" placeholder="Ej. Juan Pérez" required>
+      </div>
+
+      <div class="form-group">
+        <label for="userEmail">Correo Electrónico</label>
+        <input type="email" id="userEmail" class="form-control" placeholder="tuemail@ejemplo.com" required>
+      </div>
+
+      <div id="contactMessageGroup" class="form-group" style="display: none;">
+        <label for="userMessage">Detalles o Requerimientos Específicos</label>
+        <textarea id="userMessage" class="form-control" rows="3" placeholder="Describe brevemente lo que tu empresa necesita..."></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-solid" style="width: 100%; margin-top: 10px;">Continuar Registro</button>
+    </form>
+  </div>
+</div>
+
+<footer class="wrap">
+  <span>© 2026 MiGestión — Plataformas de Software Integrales - www.migestion.com.ar</span>
+</footer>
+
+<script>
+  /* MANEJO DE DESPLEGABLE CLICK / HOVER */
+  function toggleDropdown(event) {
+    event.stopPropagation();
+    const dropdown = document.getElementById('productsDropdown');
+    dropdown.classList.toggle('open');
+  }
+
+  function closeDropdown() {
+    const dropdown = document.getElementById('productsDropdown');
+    dropdown.classList.remove('open');
+  }
+
+  /* CERRAR DROPDOWN SI SE HACE CLICK FUERA */
+  document.addEventListener('click', function(event) {
+    const dropdown = document.getElementById('productsDropdown');
+    if (!dropdown.contains(event.target)) {
+      closeDropdown();
+    }
+  });
+
+  /* MODAL REGISTRO DE USUARIO */
+  function openRegisterModal(defaultType = '') {
+    const modal = document.getElementById('registerModal');
+    const selectType = document.getElementById('serviceType');
+    
+    if (defaultType) {
+      selectType.value = defaultType;
+    }
+    
+    updateFormFields();
+    modal.classList.add('active');
+  }
+
+  function closeRegisterModal() {
+    document.getElementById('registerModal').classList.remove('active');
+  }
+
+  function updateFormFields() {
+    const type = document.getElementById('serviceType').value;
+    const saasGroup = document.getElementById('saasProductGroup');
+    const messageGroup = document.getElementById('contactMessageGroup');
+
+    if (type === 'saas') {
+      saasGroup.style.display = 'block';
+      messageGroup.style.display = 'none';
+    } else if (type === 'web' || type === 'escritorio') {
+      saasGroup.style.display = 'none';
+      messageGroup.style.display = 'block';
+    } else {
+      saasGroup.style.display = 'none';
+      messageGroup.style.display = 'none';
+    }
+  }
+
+  function handleRegisterSubmit(event) {
+    event.preventDefault();
+    const type = document.getElementById('serviceType').value;
+
+    if (type === 'saas') {
+      const targetLanding = document.getElementById('saasProduct').value;
+      closeRegisterModal();
+      alert('Registro iniciado correctamente. Redirigiendo a la Landing Page del producto seleccionado...');
+      window.location.href = targetLanding;
+    } else if (type === 'web') {
+      closeRegisterModal();
+      alert('Solicitud enviada para Software Web a Medida. Nos pondremos en contacto a la brevedad.');
+      window.location.href = '#contacto';
+    } else if (type === 'escritorio') {
+      closeRegisterModal();
+      alert('Solicitud enviada para Software de Escritorio. Nos pondremos en contacto a la brevedad.');
+      window.location.href = '#contacto';
+    }
+  }
+</script>
+
+</body>
+</html>
