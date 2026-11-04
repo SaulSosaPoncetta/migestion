@@ -32,6 +32,14 @@
     --p-educativa-light: #EFF6FF;
     --p-personal-main: #78350F;
     --p-personal-light: #FEF3C7;
+    --p-mercado-main: #DB2777;
+    --p-mercado-light: #FDF2F8;
+    --p-contable-main: #0F766E;
+    --p-contable-light: #F0FDFA;
+    --p-cooperadora-main: #CA8A04;
+    --p-cooperadora-light: #FEFCE8;
+    --p-aulavirtual-main: #4F46E5;
+    --p-aulavirtual-light: #EEF2FF;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -56,7 +64,7 @@
   }
   .nav {
     display: flex; align-items: center; justify-content: space-between;
-    padding: 16px 0;
+    padding: 16px 24px;
   }
   .logo {
     font-weight: 800; font-size: 1.4rem;
@@ -83,6 +91,9 @@
     box-shadow: 0 20px 30px -10px rgba(15, 23, 42, 0.15);
     border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 10px; margin-top: 8px;
   }
+  .dropdown-menu::before { content: ""; position: absolute; top: -10px; left: 0; right: 0; height: 10px; }
+  .dropdown-menu .dropdown-label { font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #94A3B8; padding: 8px 12px 4px; }
+  .dropdown-menu .soon { margin-left: auto; font-size: 0.7rem; font-weight: 700; color: #94A3B8; }
   .dropdown:hover .dropdown-menu,
   .dropdown.open .dropdown-menu { display: block; }
   
@@ -108,7 +119,7 @@
 
   /* HERO */
   .hero {
-    padding: 80px 0 90px;
+    padding: 80px 24px 90px;
     display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center;
   }
   .eyebrow {
@@ -139,12 +150,18 @@
 
   /* SECTION HEADINGS */
   section { padding: 80px 0; }
+  section.wrap { padding: 80px 24px; }
+  section[id] { scroll-margin-top: 80px; }
   .sec-head { max-width: 600px; margin-bottom: 48px; }
   .sec-head .tag { font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: #8B5CF6; margin-bottom: 10px; display: block; }
   .sec-head h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); margin-bottom: 12px; }
 
   /* PRODUCTOS ESTRELLA */
-  .products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .products-grid.soon-grid { margin-top: 20px; }
+  .soon-title { font-size: 1rem; margin: 48px 0 0; color: var(--text-muted); }
+  .badge-soon { position: absolute; top: 16px; right: 16px; font-size: 0.7rem; font-weight: 800; padding: 3px 10px; border-radius: 999px; background: #E2E8F0; color: var(--text-muted); }
+  .product-star-card .go { margin-top: auto; padding-top: 14px; font-size: 0.85rem; font-weight: 700; }
   .product-star-card {
     background: #ffffff; border-radius: var(--radius-lg); padding: 26px 22px;
     border: 2px solid transparent; transition: all .2s ease;
@@ -194,6 +211,22 @@
   .card-personal .ico-box { background: var(--p-personal-light); color: var(--p-personal-main); }
   .card-personal:hover { border-color: var(--p-personal-main); box-shadow: 0 12px 30px rgba(120, 53, 15, 0.15); }
 
+  .card-mercado { border-color: rgba(219, 39, 119, 0.2); }
+  .card-mercado .ico-box { background: var(--p-mercado-light); color: var(--p-mercado-main); }
+  .card-mercado:hover { border-color: var(--p-mercado-main); box-shadow: 0 12px 30px rgba(219, 39, 119, 0.15); }
+
+  .card-contable { border-color: rgba(15, 118, 110, 0.2); }
+  .card-contable .ico-box { background: var(--p-contable-light); color: var(--p-contable-main); }
+  .card-contable:hover { border-color: var(--p-contable-main); box-shadow: 0 12px 30px rgba(15, 118, 110, 0.15); }
+
+  .card-cooperadora { border-color: rgba(202, 138, 4, 0.2); }
+  .card-cooperadora .ico-box { background: var(--p-cooperadora-light); color: var(--p-cooperadora-main); }
+  .card-cooperadora:hover { border-color: var(--p-cooperadora-main); box-shadow: 0 12px 30px rgba(202, 138, 4, 0.15); }
+
+  .card-aulavirtual { border-color: rgba(79, 70, 229, 0.2); }
+  .card-aulavirtual .ico-box { background: var(--p-aulavirtual-light); color: var(--p-aulavirtual-main); }
+  .card-aulavirtual:hover { border-color: var(--p-aulavirtual-main); box-shadow: 0 12px 30px rgba(79, 70, 229, 0.15); }
+
   /* TIPOS DE SERVICIO */
   .services-types-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
   .service-type-card {
@@ -240,7 +273,11 @@
   }
   .form-control:focus { border-color: #2563EB; }
 
-  @media (max-width: 1100px) {
+  /* MENU MOBILE */
+  .nav-actions { display: flex; align-items: center; gap: 8px; }
+  .menu-toggle { display: none; background: #E2E8F0; border: none; border-radius: 10px; width: 42px; height: 42px; font-size: 1.3rem; cursor: pointer; }
+
+  @media (max-width: 1000px) {
     .products-grid { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 992px) {
@@ -250,8 +287,20 @@
     .hero { grid-template-columns: 1fr; }
     .stage { display: none; }
     .products-grid, .services-types-grid { grid-template-columns: 1fr; }
-    nav.links { display: none; }
+    .cta-section { padding: 36px 24px; }
+    .nav { flex-wrap: wrap; gap: 12px; }
+    .menu-toggle { display: inline-flex; align-items: center; justify-content: center; }
+    .nav-actions .btn-ghost { display: none; }
+    .nav-actions .btn { padding: 10px 16px; }
+    nav.links { display: none; order: 3; width: 100%; flex-direction: column; align-items: stretch; gap: 4px; padding-bottom: 12px; }
+    nav.links.open { display: flex; }
+    nav.links > a, .dropdown-btn { padding: 10px 0; }
+    .dropdown-menu { position: static; display: none; box-shadow: none; min-width: 0; margin-top: 0; }
+    .dropdown:hover .dropdown-menu { display: none; }
+    .dropdown.open .dropdown-menu { display: block; }
+    nav.links .panel-link-mobile { display: block; }
   }
+  .panel-link-mobile { display: none; }
 </style>
 </head>
 <body>
@@ -259,52 +308,70 @@
 <header>
   <div class="wrap nav">
     <a href="#" class="logo">MiGestión</a>
-    <nav class="links">
+    <nav class="links" id="mainNav">
       <div class="dropdown" id="productsDropdown">
-        <button class="dropdown-btn" onclick="toggleDropdown(event)">
+        <button type="button" class="dropdown-btn" onclick="toggleDropdown(event)" aria-haspopup="true">
           Módulos y Productos <span style="font-size: 0.7rem;">▼</span>
         </button>
         <div class="dropdown-menu">
-          <a href="https://comercialpos.migestion.com.ar/landing" class="dropdown-item">
+          <a href="https://comercialpos.migestion.com.ar/" class="dropdown-item">
             <span class="badge-dot" style="background: var(--p-comercial-main);"></span>
             <span>Gestión Comercial</span>
           </a>
-          <a href="stock_landing.html" class="dropdown-item">
-            <span class="badge-dot" style="background: var(--p-stock-main);"></span>
-            <span>Stock y Almacenes</span>
+          <a href="https://mercado.migestion.com.ar/" class="dropdown-item">
+            <span class="badge-dot" style="background: var(--p-mercado-main);"></span>
+            <span>Mercado</span>
           </a>
-          <a href="creditos_landing.html" class="dropdown-item">
+          <a href="https://gcreditos.migestion.com.ar/" class="dropdown-item">
             <span class="badge-dot" style="background: var(--p-creditos-main);"></span>
-            <span>Gestión de Créditos Personales</span>
+            <span>Gestión de Créditos</span>
           </a>
-          <a href="profesionales_landing.html" class="dropdown-item">
-            <span class="badge-dot" style="background: var(--p-profesionales-main);"></span>
-            <span>Gestión para Profesionales</span>
+          <a href="https://grrhh.migestion.com.ar/" class="dropdown-item">
+            <span class="badge-dot" style="background: var(--p-personal-main);"></span>
+            <span>Recursos Humanos</span>
           </a>
-          <a href="https://aula.migestion.com.ar/landing" class="dropdown-item">
+          <a href="https://gcontable.migestion.com.ar/" class="dropdown-item">
+            <span class="badge-dot" style="background: var(--p-contable-main);"></span>
+            <span>Gestión Contable</span>
+          </a>
+          <a href="https://aula.migestion.com.ar/" class="dropdown-item">
             <span class="badge-dot" style="background: var(--p-aula-main);"></span>
             <span>Gestión de Aula</span>
           </a>
+          <a href="https://aulavirtual.migestion.com.ar/" class="dropdown-item">
+            <span class="badge-dot" style="background: var(--p-aulavirtual-main);"></span>
+            <span>Aula Virtual</span>
+          </a>
+          <a href="https://geducativa.migestion.com.ar/" class="dropdown-item">
+            <span class="badge-dot" style="background: var(--p-educativa-main);"></span>
+            <span>Gestión Educativa</span>
+          </a>
+          <a href="https://gcooperadora.migestion.com.ar/" class="dropdown-item">
+            <span class="badge-dot" style="background: var(--p-cooperadora-main);"></span>
+            <span>Cooperadoras Escolares</span>
+          </a>
+          <div class="dropdown-label">Próximamente</div>
           <a href="biblioteca_landing.html" class="dropdown-item">
             <span class="badge-dot" style="background: var(--p-biblioteca-main);"></span>
-            <span>Gestión de Biblioteca</span>
+            <span>Gestión de Biblioteca</span><span class="soon">Pronto</span>
           </a>
-          <a href="gestioneducativa_landing.html" class="dropdown-item">
-            <span class="badge-dot" style="background: var(--p-educativa-main);"></span>
-            <span>Gestión Educativa Institucional</span>
-          </a>
-          <a href="personal_landing.html" class="dropdown-item">
-            <span class="badge-dot" style="background: var(--p-personal-main);"></span>
-            <span>Personal y Sueldos</span>
+          <a href="profesionales_landing.html" class="dropdown-item">
+            <span class="badge-dot" style="background: var(--p-profesionales-main);"></span>
+            <span>Gestión de Profesionales</span><span class="soon">Pronto</span>
           </a>
         </div>
       </div>
-     
+
+      <a href="#productos-estrella">Productos</a>
       <a href="#servicios">Servicios</a>
       <a href="#contacto">Contacto</a>
+      <a href="https://panelgestion.migestion.com.ar" class="panel-link-mobile">Panel de administración</a>
     </nav>
-    <a href="https://panelgestion.migestion.com.ar" class="btn btn-ghost" style="margin-right: 8px;">Panel de administración</a>
-    <button onclick="openRegisterModal()" class="btn btn-solid">Registrarse</button>
+    <div class="nav-actions">
+      <a href="https://panelgestion.migestion.com.ar" class="btn btn-ghost">Panel de administración</a>
+      <button type="button" onclick="openRegisterModal()" class="btn btn-solid">Registrarse</button>
+      <button type="button" class="menu-toggle" onclick="toggleMenu()" aria-label="Abrir menú">☰</button>
+    </div>
   </div>
 </header>
 
@@ -316,24 +383,27 @@
       <h1>Tu gestión operativa <span>organizada y al instante</span>.</h1>
       <p class="lead">Crea tu cuenta de usuario e ingresa directamente a las aplicaciones SaaS o solicita el desarrollo personalizado para tu organización.</p>
       <div class="hero-ctas">
-        <button onclick="openRegisterModal()" class="btn btn-solid">Crear Mi Cuenta</button>
+        <button type="button" onclick="openRegisterModal()" class="btn btn-solid">Crear Mi Cuenta</button>
         <a href="#productos-estrella" class="btn btn-ghost">Ver soluciones</a>
       </div>
     </div>
 
     <div class="stage">
       <div class="folder">
-        <a href="creditos_landing.html" class="ficha" style="background: var(--p-creditos-light); color: var(--p-creditos-main);">
-          <span>💳 Créditos Personales</span><span>Activo</span>
-        </a>
-        <a href="https://comercialpos.migestion.com.ar/landing" class="ficha" style="background: var(--p-comercial-light); color: var(--p-comercial-main);">
+        <a href="https://comercialpos.migestion.com.ar/" class="ficha" style="background: var(--p-comercial-light); color: var(--p-comercial-main);">
           <span>🛒 Comercial & Ventas</span><span>Sincronizado</span>
         </a>
-        <a href="https://aula.migestion.com.ar/landing" class="ficha" style="background: var(--p-aula-light); color: var(--p-aula-main);">
-          <span>👩‍🏫 Aula Virtual & Asistencia</span><span>En línea</span>
+        <a href="https://gcreditos.migestion.com.ar/" class="ficha" style="background: var(--p-creditos-light); color: var(--p-creditos-main);">
+          <span>💳 Créditos Personales</span><span>Activo</span>
         </a>
-        <a href="biblioteca_landing.html" class="ficha" style="background: var(--p-biblioteca-light); color: var(--p-biblioteca-main);">
-          <span>📚 Catálogo Biblioteca</span><span>Disponible</span>
+        <a href="https://grrhh.migestion.com.ar/" class="ficha" style="background: var(--p-personal-light); color: var(--p-personal-main);">
+          <span>👥 Recursos Humanos</span><span>Al día</span>
+        </a>
+        <a href="https://aula.migestion.com.ar/" class="ficha" style="background: var(--p-aula-light); color: var(--p-aula-main);">
+          <span>👩‍🏫 Gestión de Aula</span><span>En línea</span>
+        </a>
+        <a href="https://aulavirtual.migestion.com.ar/" class="ficha" style="background: var(--p-aulavirtual-light); color: var(--p-aulavirtual-main);">
+          <span>💻 Aula Virtual</span><span>Disponible</span>
         </a>
       </div>
     </div>
@@ -349,52 +419,86 @@
       </div>
 
       <div class="products-grid">
-        <a href="https://comercialpos.migestion.com.ar/landing" class="product-star-card card-comercial">
+        <a href="https://comercialpos.migestion.com.ar/" class="product-star-card card-comercial">
           <div class="ico-box">🛒</div>
           <h4>Gestión Comercial</h4>
-          <p>Control total de ventas, facturación electrónica, cajas, facturas recurrentes y cobranzas integradas.</p>
+          <p>Ventas, facturación, compras, stock multi-depósito, cajas y cobranzas en un solo sistema.</p>
+          <span class="go" style="color: var(--p-comercial-main);">Conocer el sistema →</span>
         </a>
 
-        <a href="stock_landing.html" class="product-star-card card-stock">
-          <div class="ico-box">📦</div>
-          <h4>Stock y Almacenes</h4>
-          <p>Inventarios multi-sucursal, alertas de faltantes, control de entradas/salidas y trazabilidad de productos.</p>
+        <a href="https://mercado.migestion.com.ar/" class="product-star-card card-mercado">
+          <div class="ico-box">🛍️</div>
+          <h4>Mercado</h4>
+          <p>Marketplace online: vendé tus productos o comprá a comercios de la comunidad.</p>
+          <span class="go" style="color: var(--p-mercado-main);">Conocer el sistema →</span>
         </a>
 
-        <a href="creditos_landing.html" class="product-star-card card-creditos">
+        <a href="https://gcreditos.migestion.com.ar/" class="product-star-card card-creditos">
           <div class="ico-box">💳</div>
-          <h4>Créditos Personales</h4>
-          <p>Simulación y préstamos en cuotas, cálculo de mora, seguimiento de cobranzas y refinanciaciones.</p>
+          <h4>Gestión de Créditos</h4>
+          <p>Préstamos en cuotas, cálculo de mora, seguimiento de cobranzas y refinanciaciones.</p>
+          <span class="go" style="color: var(--p-creditos-main);">Conocer el sistema →</span>
         </a>
 
-        <a href="https://aula.migestion.com.ar/landing" class="product-star-card card-aula">
+        <a href="https://grrhh.migestion.com.ar/" class="product-star-card card-personal">
+          <div class="ico-box">👥</div>
+          <h4>Recursos Humanos</h4>
+          <p>Legajos de empleados, asistencias, licencias, liquidación de haberes y conceptos salariales.</p>
+          <span class="go" style="color: var(--p-personal-main);">Conocer el sistema →</span>
+        </a>
+
+        <a href="https://gcontable.migestion.com.ar/" class="product-star-card card-contable">
+          <div class="ico-box">📊</div>
+          <h4>Gestión Contable</h4>
+          <p>Plan de cuentas, asientos, libro diario y mayor, balances y reportes para empresas argentinas.</p>
+          <span class="go" style="color: var(--p-contable-main);">Conocer el sistema →</span>
+        </a>
+
+        <a href="https://aula.migestion.com.ar/" class="product-star-card card-aula">
           <div class="ico-box">👩‍🏫</div>
           <h4>Gestión de Aula</h4>
-          <p>Control de asistencias, registro de calificaciones, clases online y plataforma interactiva para docentes y alumnos.</p>
+          <p>Asistencias, calificaciones y planificación para docentes, desde la web o el celular.</p>
+          <span class="go" style="color: var(--p-aula-main);">Conocer el sistema →</span>
         </a>
 
-        <a href="biblioteca_landing.html" class="product-star-card card-biblioteca">
-          <div class="ico-box">📚</div>
-          <h4>Gestión de Biblioteca</h4>
-          <p>Catalogación de libros, control de préstamos, devolución con código de barras y repositorio digital de contenidos.</p>
+        <a href="https://aulavirtual.migestion.com.ar/" class="product-star-card card-aulavirtual">
+          <div class="ico-box">💻</div>
+          <h4>Aula Virtual</h4>
+          <p>Campus virtual con cursos, materiales, tareas y evaluaciones online.</p>
+          <span class="go" style="color: var(--p-aulavirtual-main);">Conocer el sistema →</span>
         </a>
 
-        <a href="gestioneducativa_landing.html" class="product-star-card card-educativa">
+        <a href="https://geducativa.migestion.com.ar/" class="product-star-card card-educativa">
           <div class="ico-box">🏛️</div>
           <h4>Gestión Educativa</h4>
-          <p>Matriculación, legajos de alumnos, cobro de cuotas mensuales, planes de pago y reportes directivos.</p>
+          <p>Matriculación, legajos de alumnos, cuotas, planes de pago y reportes directivos.</p>
+          <span class="go" style="color: var(--p-educativa-main);">Conocer el sistema →</span>
         </a>
 
-        <a href="personal_landing.html" class="product-star-card card-personal">
-          <div class="ico-box">👥</div>
-          <h4>Personal y Sueldos</h4>
-          <p>Gestión de RRHH, legajos de empleados, asistencias, cálculo de haberes y conceptos salariales.</p>
+        <a href="https://gcooperadora.migestion.com.ar/" class="product-star-card card-cooperadora">
+          <div class="ico-box">🤝</div>
+          <h4>Cooperadoras Escolares</h4>
+          <p>Socios, cuotas, ingresos y egresos, actas y rendiciones para asociaciones cooperadoras.</p>
+          <span class="go" style="color: var(--p-cooperadora-main);">Conocer el sistema →</span>
+        </a>
+      </div>
+
+      <h3 class="soon-title">Próximamente</h3>
+      <div class="products-grid soon-grid">
+        <a href="biblioteca_landing.html" class="product-star-card card-biblioteca">
+          <span class="badge-soon">Próximamente</span>
+          <div class="ico-box">📚</div>
+          <h4>Gestión de Biblioteca</h4>
+          <p>Catalogación de libros, préstamos, devoluciones con código de barras y repositorio digital.</p>
+          <span class="go" style="color: var(--p-biblioteca-main);">Ver más →</span>
         </a>
 
-        <a href="personal_landing.html" class="product-star-card card-profesionales">
+        <a href="profesionales_landing.html" class="product-star-card card-profesionales">
+          <span class="badge-soon">Próximamente</span>
           <div class="ico-box">🩺</div>
           <h4>Gestión de Profesionales</h4>
-          <p>Turnos online, agendas médicas/profesionales, fichas de seguimiento de clientes e historias clínicas.</p>
+          <p>Turnos online, agendas, fichas de seguimiento de clientes e historias clínicas.</p>
+          <span class="go" style="color: var(--p-profesionales-main);">Ver más →</span>
         </a>
       </div>
     </div>
@@ -418,7 +522,7 @@
             <li>Integración con pasarelas de pago y APIs</li>
           </ul>
         </div>
-        <button onclick="openRegisterModal('web')" class="btn btn-ghost">Solicitar Proyecto Web</button>
+        <button type="button" onclick="openRegisterModal('web')" class="btn btn-ghost">Solicitar Proyecto Web</button>
       </div>
 
       <div class="service-type-card">
@@ -431,7 +535,7 @@
             <li>Sincronización opcional a la nube</li>
           </ul>
         </div>
-        <button onclick="openRegisterModal('escritorio')" class="btn btn-ghost">Solicitar Software Local</button>
+        <button type="button" onclick="openRegisterModal('escritorio')" class="btn btn-ghost">Solicitar Software Local</button>
       </div>
 
       <div class="service-type-card">
@@ -444,7 +548,7 @@
             <li>Selección dinámica de producto</li>
           </ul>
         </div>
-        <button onclick="openRegisterModal('saas')" class="btn btn-solid">Registrarse a SaaS</button>
+        <button type="button" onclick="openRegisterModal('saas')" class="btn btn-solid">Registrarse a SaaS</button>
       </div>
     </div>
   </section>
@@ -456,7 +560,7 @@
         <h2>¿Listo para digitalizar tu negocio?</h2>
         <p>Crea tu cuenta de usuario o consúltanos ante cualquier duda técnica.</p>
       </div>
-      <button onclick="openRegisterModal()" class="btn btn-solid" style="background:#fff; color:var(--text-dark);">Registrar Mi Empresa</button>
+      <button type="button" onclick="openRegisterModal()" class="btn btn-solid" style="background:#fff; color:var(--text-dark);">Registrar Mi Empresa</button>
     </div>
   </section>
 </main>
@@ -464,7 +568,7 @@
 <!-- MODAL: REGISTRO DE USUARIO -->
 <div id="registerModal" class="modal-overlay">
   <div class="modal-card">
-    <button onclick="closeRegisterModal()" class="modal-close">✕</button>
+    <button type="button" onclick="closeRegisterModal()" class="modal-close">✕</button>
     <h3 style="font-size:1.5rem; margin-bottom:8px;">Registro de Usuario</h3>
     <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:24px;">Selecciona el tipo de servicio que necesitas para continuar.</p>
 
@@ -482,17 +586,15 @@
       <div id="saasProductGroup" class="form-group" style="display: none;">
         <label for="saasProduct">Selecciona el Producto SaaS</label>
         <select id="saasProduct" class="form-control">
-          <option value="comercial_landing.html">🛒 Gestión Comercial</option>
-          <option value="stock_landing.html">📦 Gestion Stock</option>
-          <option value="creditos_landing.html">💳 Gestión de Créditos</option>
-          <option value="personal_landing.html">🩺 Gestión de Profesionales</option>
-          <option value="aula_landing.html">👩‍🏫 Gestión de Aula</option>
-          <option value="personal_landing.html">👥 Gestion Instituciones Educativas</option>
-          <option value="biblioteca_landing.html">📚 Gestión de Biblioteca</option>
-          <option value="gestioneducativa_landing.html">🏛️ Gestión Educativa</option>
-          <option value="personal_landing.html">👥 Gestion Cooperadoras</option>
-          <option value="personal_landing.html">👥 Gestion Contable</option>
-          <option value="personal_landing.html">👥 Gestion RRHH</option>
+          <option value="https://comercialpos.migestion.com.ar/">🛒 Gestión Comercial</option>
+          <option value="https://mercado.migestion.com.ar/">🛍️ Mercado</option>
+          <option value="https://gcreditos.migestion.com.ar/">💳 Gestión de Créditos</option>
+          <option value="https://grrhh.migestion.com.ar/">👥 Recursos Humanos</option>
+          <option value="https://gcontable.migestion.com.ar/">📊 Gestión Contable</option>
+          <option value="https://aula.migestion.com.ar/">👩‍🏫 Gestión de Aula</option>
+          <option value="https://aulavirtual.migestion.com.ar/">💻 Aula Virtual</option>
+          <option value="https://geducativa.migestion.com.ar/">🏛️ Gestión Educativa</option>
+          <option value="https://gcooperadora.migestion.com.ar/">🤝 Cooperadoras Escolares</option>
         </select>
       </div>
 
@@ -517,7 +619,7 @@
 </div>
 
 <footer class="wrap">
-  <span>© 2026 MiGestión — Plataformas de Software Integrales - www.migestion.com.ar</span>
+  <span>© <span id="year">2026</span> MiGestión — Plataformas de Software Integrales - www.migestion.com.ar</span>
 </footer>
 
 <script>
@@ -532,6 +634,24 @@
     const dropdown = document.getElementById('productsDropdown');
     dropdown.classList.remove('open');
   }
+
+  /* MENU MOBILE */
+  function toggleMenu() {
+    document.getElementById('mainNav').classList.toggle('open');
+  }
+  document.querySelectorAll('#mainNav a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      document.getElementById('mainNav').classList.remove('open');
+    });
+  });
+
+  /* CERRAR MODAL CON CLICK AFUERA O ESCAPE */
+  document.getElementById('registerModal').addEventListener('click', function (e) {
+    if (e.target === this) closeRegisterModal();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeRegisterModal();
+  });
 
   /* CERRAR DROPDOWN SI SE HACE CLICK FUERA */
   document.addEventListener('click', function(event) {
@@ -582,7 +702,6 @@
     if (type === 'saas') {
       const targetLanding = document.getElementById('saasProduct').value;
       closeRegisterModal();
-      alert('Registro iniciado correctamente. Redirigiendo a la Landing Page del producto seleccionado...');
       window.location.href = targetLanding;
     } else if (type === 'web') {
       closeRegisterModal();
@@ -594,6 +713,7 @@
       window.location.href = '#contacto';
     }
   }
+  document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 
 </body>
