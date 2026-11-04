@@ -40,6 +40,10 @@
     --p-cooperadora-light: #FEFCE8;
     --p-aulavirtual-main: #4F46E5;
     --p-aulavirtual-light: #EEF2FF;
+    --p-eventos-main: #C026D3;
+    --p-eventos-light: #FDF4FF;
+    --p-pedagogica-main: #65A30D;
+    --p-pedagogica-light: #F7FEE7;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -227,6 +231,14 @@
   .card-aulavirtual .ico-box { background: var(--p-aulavirtual-light); color: var(--p-aulavirtual-main); }
   .card-aulavirtual:hover { border-color: var(--p-aulavirtual-main); box-shadow: 0 12px 30px rgba(79, 70, 229, 0.15); }
 
+  .card-eventos { border-color: rgba(192, 38, 211, 0.2); }
+  .card-eventos .ico-box { background: var(--p-eventos-light); color: var(--p-eventos-main); }
+  .card-eventos:hover { border-color: var(--p-eventos-main); box-shadow: 0 12px 30px rgba(192, 38, 211, 0.15); }
+
+  .card-pedagogica { border-color: rgba(101, 163, 13, 0.2); }
+  .card-pedagogica .ico-box { background: var(--p-pedagogica-light); color: var(--p-pedagogica-main); }
+  .card-pedagogica:hover { border-color: var(--p-pedagogica-main); box-shadow: 0 12px 30px rgba(101, 163, 13, 0.15); }
+
   /* TIPOS DE SERVICIO */
   .services-types-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
   .service-type-card {
@@ -324,11 +336,11 @@
           </a>
           <a href="https://gcreditos.migestion.com.ar/" class="dropdown-item">
             <span class="badge-dot" style="background: var(--p-creditos-main);"></span>
-            <span>Gestión de Créditos</span>
+            <span>Gestión Créditos</span>
           </a>
           <a href="https://grrhh.migestion.com.ar/" class="dropdown-item">
             <span class="badge-dot" style="background: var(--p-personal-main);"></span>
-            <span>Recursos Humanos</span>
+            <span>Gestión RRHH</span>
           </a>
           <a href="https://gcontable.migestion.com.ar/" class="dropdown-item">
             <span class="badge-dot" style="background: var(--p-contable-main);"></span>
@@ -340,7 +352,7 @@
           </a>
           <a href="https://aulavirtual.migestion.com.ar/" class="dropdown-item">
             <span class="badge-dot" style="background: var(--p-aulavirtual-main);"></span>
-            <span>Aula Virtual</span>
+            <span>Plataforma Pedagógica</span>
           </a>
           <a href="https://geducativa.migestion.com.ar/" class="dropdown-item">
             <span class="badge-dot" style="background: var(--p-educativa-main);"></span>
@@ -348,16 +360,24 @@
           </a>
           <a href="https://gcooperadora.migestion.com.ar/" class="dropdown-item">
             <span class="badge-dot" style="background: var(--p-cooperadora-main);"></span>
-            <span>Cooperadoras Escolares</span>
+            <span>Gestión Cooperadora</span>
           </a>
           <div class="dropdown-label">Próximamente</div>
+          <a href="stock_landing.html" class="dropdown-item">
+            <span class="badge-dot" style="background: var(--p-stock-main);"></span>
+            <span>Gestión de Stock</span><span class="soon">Pronto</span>
+          </a>
+          <a href="profesionales_landing.html" class="dropdown-item">
+            <span class="badge-dot" style="background: var(--p-profesionales-main);"></span>
+            <span>Gestión Profesional</span><span class="soon">Pronto</span>
+          </a>
           <a href="biblioteca_landing.html" class="dropdown-item">
             <span class="badge-dot" style="background: var(--p-biblioteca-main);"></span>
             <span>Gestión de Biblioteca</span><span class="soon">Pronto</span>
           </a>
-          <a href="profesionales_landing.html" class="dropdown-item">
-            <span class="badge-dot" style="background: var(--p-profesionales-main);"></span>
-            <span>Gestión de Profesionales</span><span class="soon">Pronto</span>
+          <a href="#contacto" class="dropdown-item">
+            <span class="badge-dot" style="background: var(--p-eventos-main);"></span>
+            <span>Gestión Eventos</span><span class="soon">Pronto</span>
           </a>
         </div>
       </div>
@@ -394,16 +414,16 @@
           <span>🛒 Comercial & Ventas</span><span>Sincronizado</span>
         </a>
         <a href="https://gcreditos.migestion.com.ar/" class="ficha" style="background: var(--p-creditos-light); color: var(--p-creditos-main);">
-          <span>💳 Créditos Personales</span><span>Activo</span>
+          <span>💳 Gestión Créditos</span><span>Activo</span>
         </a>
         <a href="https://grrhh.migestion.com.ar/" class="ficha" style="background: var(--p-personal-light); color: var(--p-personal-main);">
-          <span>👥 Recursos Humanos</span><span>Al día</span>
+          <span>👥 Gestión RRHH</span><span>Al día</span>
         </a>
         <a href="https://aula.migestion.com.ar/" class="ficha" style="background: var(--p-aula-light); color: var(--p-aula-main);">
           <span>👩‍🏫 Gestión de Aula</span><span>En línea</span>
         </a>
         <a href="https://aulavirtual.migestion.com.ar/" class="ficha" style="background: var(--p-aulavirtual-light); color: var(--p-aulavirtual-main);">
-          <span>💻 Aula Virtual</span><span>Disponible</span>
+          <span>💻 Plataforma Pedagógica</span><span>Disponible</span>
         </a>
       </div>
     </div>
@@ -435,14 +455,14 @@
 
         <a href="https://gcreditos.migestion.com.ar/" class="product-star-card card-creditos">
           <div class="ico-box">💳</div>
-          <h4>Gestión de Créditos</h4>
+          <h4>Gestión Créditos</h4>
           <p>Préstamos en cuotas, cálculo de mora, seguimiento de cobranzas y refinanciaciones.</p>
           <span class="go" style="color: var(--p-creditos-main);">Conocer el sistema →</span>
         </a>
 
         <a href="https://grrhh.migestion.com.ar/" class="product-star-card card-personal">
           <div class="ico-box">👥</div>
-          <h4>Recursos Humanos</h4>
+          <h4>Gestión RRHH</h4>
           <p>Legajos de empleados, asistencias, licencias, liquidación de haberes y conceptos salariales.</p>
           <span class="go" style="color: var(--p-personal-main);">Conocer el sistema →</span>
         </a>
@@ -463,8 +483,8 @@
 
         <a href="https://aulavirtual.migestion.com.ar/" class="product-star-card card-aulavirtual">
           <div class="ico-box">💻</div>
-          <h4>Aula Virtual</h4>
-          <p>Campus virtual con cursos, materiales, tareas y evaluaciones online.</p>
+          <h4>Plataforma Pedagógica</h4>
+          <p>Aula virtual con cursos, materiales, tareas y evaluaciones online para docentes y alumnos.</p>
           <span class="go" style="color: var(--p-aulavirtual-main);">Conocer el sistema →</span>
         </a>
 
@@ -477,7 +497,7 @@
 
         <a href="https://gcooperadora.migestion.com.ar/" class="product-star-card card-cooperadora">
           <div class="ico-box">🤝</div>
-          <h4>Cooperadoras Escolares</h4>
+          <h4>Gestión Cooperadora</h4>
           <p>Socios, cuotas, ingresos y egresos, actas y rendiciones para asociaciones cooperadoras.</p>
           <span class="go" style="color: var(--p-cooperadora-main);">Conocer el sistema →</span>
         </a>
@@ -485,6 +505,22 @@
 
       <h3 class="soon-title">Próximamente</h3>
       <div class="products-grid soon-grid">
+        <a href="stock_landing.html" class="product-star-card card-stock">
+          <span class="badge-soon">Próximamente</span>
+          <div class="ico-box">📦</div>
+          <h4>Gestión de Stock</h4>
+          <p>Inventario multi-sucursal, alertas de faltantes, entradas, salidas y trazabilidad de productos.</p>
+          <span class="go" style="color: var(--p-stock-main);">Ver más →</span>
+        </a>
+
+        <a href="profesionales_landing.html" class="product-star-card card-profesionales">
+          <span class="badge-soon">Próximamente</span>
+          <div class="ico-box">🩺</div>
+          <h4>Gestión Profesional</h4>
+          <p>Turnos online, agendas, fichas de seguimiento de clientes e historias clínicas.</p>
+          <span class="go" style="color: var(--p-profesionales-main);">Ver más →</span>
+        </a>
+
         <a href="biblioteca_landing.html" class="product-star-card card-biblioteca">
           <span class="badge-soon">Próximamente</span>
           <div class="ico-box">📚</div>
@@ -493,12 +529,12 @@
           <span class="go" style="color: var(--p-biblioteca-main);">Ver más →</span>
         </a>
 
-        <a href="profesionales_landing.html" class="product-star-card card-profesionales">
+        <a href="#contacto" class="product-star-card card-eventos">
           <span class="badge-soon">Próximamente</span>
-          <div class="ico-box">🩺</div>
-          <h4>Gestión de Profesionales</h4>
-          <p>Turnos online, agendas, fichas de seguimiento de clientes e historias clínicas.</p>
-          <span class="go" style="color: var(--p-profesionales-main);">Ver más →</span>
+          <div class="ico-box">🎉</div>
+          <h4>Gestión Eventos</h4>
+          <p>Organización de eventos: invitados, entradas, proveedores, presupuestos y cobros.</p>
+          <span class="go" style="color: var(--p-eventos-main);">Consultar →</span>
         </a>
       </div>
     </div>
@@ -588,13 +624,13 @@
         <select id="saasProduct" class="form-control">
           <option value="https://comercialpos.migestion.com.ar/">🛒 Gestión Comercial</option>
           <option value="https://mercado.migestion.com.ar/">🛍️ Mercado</option>
-          <option value="https://gcreditos.migestion.com.ar/">💳 Gestión de Créditos</option>
-          <option value="https://grrhh.migestion.com.ar/">👥 Recursos Humanos</option>
+          <option value="https://gcreditos.migestion.com.ar/">💳 Gestión Créditos</option>
+          <option value="https://grrhh.migestion.com.ar/">👥 Gestión RRHH</option>
           <option value="https://gcontable.migestion.com.ar/">📊 Gestión Contable</option>
           <option value="https://aula.migestion.com.ar/">👩‍🏫 Gestión de Aula</option>
-          <option value="https://aulavirtual.migestion.com.ar/">💻 Aula Virtual</option>
+          <option value="https://aulavirtual.migestion.com.ar/">💻 Plataforma Pedagógica</option>
           <option value="https://geducativa.migestion.com.ar/">🏛️ Gestión Educativa</option>
-          <option value="https://gcooperadora.migestion.com.ar/">🤝 Cooperadoras Escolares</option>
+          <option value="https://gcooperadora.migestion.com.ar/">🤝 Gestión Cooperadora</option>
         </select>
       </div>
 
